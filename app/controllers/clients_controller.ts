@@ -1,6 +1,6 @@
 
 import ClientService from '#services/client/client_service'
-import { createClientValidator } from '#validators/client'
+import { createClientValidator, updateClientValidator } from '#validators/client'
 import type { HttpContext } from '@adonisjs/core/http'
 import { inject } from '@adonisjs/core'
 
@@ -31,9 +31,13 @@ export default class ClientsController {
     return client
   }
 
-  
 
-  // async update({ params, request }: HttpContext) {}
+
+  async update({ params, request, response }: HttpContext) {
+    const data = await request.validateUsing(updateClientValidator)
+    await this.clientService.update(data, params.id)
+
+  }
 
   // async destroy({ params }: HttpContext) {}
 }

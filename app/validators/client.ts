@@ -30,7 +30,7 @@ export const createClientValidator = vine.compile(
   })
 )
 
-export const updateValidator = vine.compile(
+export const updateClientValidator = vine.compile(
   vine.object({
     name: vine.string().trim().minLength(8),
     document: vine.number().unique(async (db, value) => {

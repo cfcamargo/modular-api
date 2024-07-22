@@ -26,4 +26,8 @@ export default class ClientService {
 
         return client
     }
+
+    async update(data: ClientProps, id:number){
+        this.clientRepository.update(data, id)
+    }
 } 

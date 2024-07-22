@@ -13,4 +13,8 @@ export default class clientRepository {
     async show(id: number) {
         return await Client.findByOrFail('id', id)
     }
+
+    async update(data: ClientProps, id:number){
+        return await Client.query().where('id', id).update(data)
+    }
 }
