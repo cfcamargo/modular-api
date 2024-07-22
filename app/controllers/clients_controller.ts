@@ -12,8 +12,8 @@ export default class ClientsController {
   }
 
   async index({request}: HttpContext) {
-    const page = request.param('page', 1)
-    const perPage = request.param('perPage', 20)
+    const page = request.input('page', 1)
+    const perPage = request.input('perPage', 20)
 
     return await this.clientService.index(page, perPage,)
   }
@@ -23,7 +23,15 @@ export default class ClientsController {
     return await this.clientService.store(data)
   }
 
-  // async show({ params }: HttpContext) {}
+  async show({ params }: HttpContext) {
+    const client = await this.clientService.show(params.id)
+    await client.load((loader) => {
+      loader.load('address').load('contacts')
+    })
+    return client
+  }
+
+  
 
   // async update({ params, request }: HttpContext) {}
 

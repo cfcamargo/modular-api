@@ -9,6 +9,8 @@ router.get('/', async () => {
 
 
 router.group(() => {
-  router.get('/:page?/:perPage?', [ClientsController, 'index'])
+  router.get('/:id', [ClientsController, 'show'])
+  router.get('/', [ClientsController, 'index'])
   router.post('/', [ClientsController, 'store'])
 }).prefix('clients')
+

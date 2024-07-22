@@ -9,4 +9,8 @@ export default class clientRepository {
     async index(page:number, perPage: number){
         return await Client.query().paginate(page, perPage)
     }
+
+    async show(id: number) {
+        return await Client.findByOrFail('id', id)
+    }
 }
