@@ -1,11 +1,24 @@
-import { Address } from "./Address.js"
-import { Contact } from "./Contact.js"
+import { AddressProps } from "./Address.js"
+import { ContactProps } from "./Contact.js"
 
 export type ClientProps = {
-    name: string,
-    document: number,
-    rgIe: number,
-    im: number | null,
-    contacts: Contact[],
-    address: Address
+    basicData : {
+        name: string,
+        document: number,
+        rgIe: number,
+        im: number | null,
+    },
+    contacts: ContactProps[],
+    address: AddressProps
+}
+
+export type UpdateClientProps = {
+    basicData: {
+        name?: string,
+        document?: number,
+        rgIe?: number,
+        im?: number,
+    },
+    contacts: ContactProps[],
+    address: AddressProps
 }

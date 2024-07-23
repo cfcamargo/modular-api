@@ -33,10 +33,10 @@ export default class ClientsController {
 
 
 
-  async update({ params, request, response }: HttpContext) {
+  async update({ params, request }: HttpContext) {
     const data = await request.validateUsing(updateClientValidator)
-    await this.clientService.update(data, params.id)
-
+    const updated = await this.clientService.update(data, params.id)
+    return updated
   }
 
   // async destroy({ params }: HttpContext) {}

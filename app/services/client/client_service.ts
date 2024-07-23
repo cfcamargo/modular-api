@@ -1,10 +1,16 @@
 import { inject } from "@adonisjs/core";
 import clientRepository from "../../repositories/client/clientRepository.js";
-import { ClientProps } from "../../types/Client.js";
+import { ClientProps, UpdateClientProps } from "../../types/Client.js";
+import AddressService from "#services/address/address_service";
+import ContactService from "#services/contact/contact_service";
 
 @inject()
 export default class ClientService {
-    constructor(protected clientRepository: clientRepository){}
+    constructor(
+        protected clientRepository: clientRepository, 
+        protected addressService: AddressService,
+        protected contactService: ContactService
+    ){}
 
     async index(page:number, perPage: number){
         return await this.clientRepository.index(page, perPage)
@@ -17,17 +23,18 @@ export default class ClientService {
 
     async store(data: ClientProps){
         const client = await this.clientRepository.store(data)
-        await client.related('address').create(data.address)
-        await client.related('contacts').createMany(data.contacts)
-
-        await client.load((loader) => {
-            loader.load('address').load('contacts')
-        })
-
-        return client
+        const address = await this.addressService.store(data.address, client.id)
+        const contact = await this.contactService.store(data.contacts, client.id)
+        return {
+            basicData: client,
+            address,
+            contact
+        }
     }
 
-    async update(data: ClientProps, id:number){
-        this.clientRepository.update(data, id)
+    async update(data: UpdateClientProps, id:number){
+        const client = await this.clientRepository.update(data, id)
+        this.addressService.update(data.address, client.id)
+        return client
     }
 } 

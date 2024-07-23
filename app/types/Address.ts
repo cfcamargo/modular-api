@@ -1,4 +1,4 @@
-export type Address = {
+export type AddressProps = {
     street: string, 
     number: string,
     neighborhood: string, 

@@ -1,8 +1,8 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, hasMany } from '@adonisjs/lucid/orm'
+import { BaseModel, column, hasMany, hasOne } from '@adonisjs/lucid/orm'
 import Contact from './contact.js'
 import Address from './address.js'
-import type { HasMany } from '@adonisjs/lucid/types/relations'
+import type { HasMany, HasOne } from '@adonisjs/lucid/types/relations'
 export default class Client extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
@@ -31,6 +31,6 @@ export default class Client extends BaseModel {
   @hasMany(()=>Contact)
   declare contacts: HasMany<typeof Contact>
 
-  @hasMany(()=>Address)
-  declare address: HasMany<typeof Address>
+  @hasOne(()=>Address)
+  declare address: HasOne<typeof Address>
 }
