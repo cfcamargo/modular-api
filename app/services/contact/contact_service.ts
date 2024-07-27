@@ -1,6 +1,6 @@
 import { inject } from "@adonisjs/core";
 import contactRepository from "../../repositories/contact/contactRepository.js";
-import { ContactProps } from "../../types/Contact.js";
+import { ContactProps, UpdateContactProps } from "../../types/Contact.js";
 
 @inject()
 export default class ContactService {
@@ -11,8 +11,7 @@ export default class ContactService {
         return contact
     }
 
-    async update(data: ContactProps, id:number){
-        const client = await this.contactRepository.update(data, id)
-        return client
+    async update(data: UpdateContactProps, id:number){
+        this.contactRepository.update(data, id)
     }
 } 

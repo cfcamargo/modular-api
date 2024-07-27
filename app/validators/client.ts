@@ -35,23 +35,24 @@ export const createClientValidator = vine.compile(
 export const updateClientValidator = vine.compile(
   vine.object({
     basicData: vine.object({
-      name: vine.string().trim().minLength(8).optional(),
-      document: vine.number().optional(),
-      rgIe: vine.number().optional(),
-      im: vine.number().optional(),
-    }).optional(),
+      name: vine.string().trim().minLength(8),
+      document: vine.number(),
+      rgIe: vine.number(),
+      im: vine.number().nullable(),
+    }),
     contacts: vine.array(vine.object({
-      type:vine.enum(['email', 'phone']).optional(),
-      contact: vine.string().optional()
-    })).optional(),
+      id: vine.number(),
+      type:vine.enum(['email', 'phone']),
+      contact: vine.string()
+    })),
     address: vine.object({
-      street: vine.string().optional(),
-      number: vine.string().optional(),
+      street: vine.string(),
+      number: vine.string(),
       neighborhood: vine.string(),
-      city: vine.string().optional(),
-      state: vine.string().optional(),
-      country: vine.string().optional()
-    }).optional()
+      city: vine.string(),
+      state: vine.string(),
+      country: vine.string()
+    })
   })
 )
 

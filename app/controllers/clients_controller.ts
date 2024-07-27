@@ -15,7 +15,7 @@ export default class ClientsController {
     const page = request.input('page', 1)
     const perPage = request.input('perPage', 20)
 
-    return await this.clientService.index(page, perPage,)
+    return await this.clientService.index(page, perPage)
   }
 
   async store({ request }: HttpContext) {
@@ -30,8 +30,6 @@ export default class ClientsController {
     })
     return client
   }
-
-
 
   async update({ params, request }: HttpContext) {
     const data = await request.validateUsing(updateClientValidator)

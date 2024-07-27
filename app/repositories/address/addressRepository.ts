@@ -8,7 +8,7 @@ export default class addressRepository {
     }
 
     async update(data: any, id:number){
-        const address =  await Address.query().where('user_id', id).first()
+        const address =  await Address.query().where('client_id', id).first()
         if(!address){
             throw new ModelNotFoundException()
         }

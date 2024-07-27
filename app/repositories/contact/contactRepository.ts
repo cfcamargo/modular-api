@@ -1,7 +1,6 @@
 import ModelNotFoundException from "#exceptions/model_not_found_exception";
-import Address from "#models/address";
 import Contact from "#models/contact";
-import { ContactProps } from "../../types/Contact.js";
+import { ContactProps, UpdateContactProps } from "../../types/Contact.js";
 
 export default class contactRepository {
     async store(data: ContactProps[], id: number): Promise<Contact[]> {
@@ -12,13 +11,14 @@ export default class contactRepository {
         return contacts;
     }
 
-    async update(data: any, id:number){
-        const address =  await Address.query().where('user_id', id).first()
-        if(!address){
+    async update(data: UpdateContactProps, id:number){
+        const contact = await Contact.find(id)
+
+        if(!contact){
             throw new ModelNotFoundException()
-        }
-        address.merge(data.basicData)
-        address.save()
-        return address
+        } 
+
+        contact.merge(data)
+        await contact.save()
     }
 }

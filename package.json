@@ -12,7 +12,7 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "typecheck": "tsc --noEmit",
-    "reload": "node ace migration:fresh && node ace serve"
+    "reload": "node ace migration:fresh && node ace serve -p 3333"
   },
   "imports": {
     "#controllers/*": "./app/controllers/*.js",
