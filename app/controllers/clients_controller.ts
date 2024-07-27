@@ -37,5 +37,7 @@ export default class ClientsController {
     return updated
   }
 
-  // async destroy({ params }: HttpContext) {}
+  async destroy({ params }: HttpContext) {
+    await this.clientService.destroy(params.id)
+  }
 }

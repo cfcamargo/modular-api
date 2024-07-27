@@ -2,8 +2,10 @@ import { DateTime } from 'luxon'
 import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
 import Client from './client.js'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
+import { compose } from '@adonisjs/core/helpers'
+import { SoftDeletes } from 'adonis-lucid-soft-deletes'
 
-export default class Address extends BaseModel {
+export default class Address extends compose(BaseModel,SoftDeletes ) {
   @column({ isPrimary: true })
   declare id: number
 
@@ -27,6 +29,9 @@ export default class Address extends BaseModel {
 
   @column()
   declare country: string
+
+  @column.dateTime()
+  declare deletedAt: DateTime | null
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

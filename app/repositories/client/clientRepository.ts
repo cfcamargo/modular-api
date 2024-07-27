@@ -25,4 +25,22 @@ export default class clientRepository {
 
         return client
     }
+
+    async destroy(id: number) {
+        const client = await Client.findOrFail(id)
+        if(!client){
+            throw new ModelNotFoundException()
+        }
+        await client.load('address')
+        const address = client.address
+        await address.delete()
+
+        await client.load('contacts')
+        Promise.all(client.contacts.map(async (contact) => {
+            await contact.delete()
+        }))
+        // await client.delete()
+
+        return true
+    }
 }

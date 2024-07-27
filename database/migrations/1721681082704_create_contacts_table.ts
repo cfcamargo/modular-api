@@ -12,6 +12,7 @@ export default class extends BaseSchema {
       table.foreign('client_id').references('id').inTable('clients')
       table.timestamp('created_at')
       table.timestamp('updated_at')
+      table.timestamp('deleted_at')
     })
   }
 

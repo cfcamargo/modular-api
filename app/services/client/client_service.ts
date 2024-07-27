@@ -44,4 +44,8 @@ export default class ClientService {
             await Promise.all(updatePromises);
             return client;
     }
+
+    async destroy(id: number) {
+        await this.clientRepository.destroy(id)
+    }
 } 
