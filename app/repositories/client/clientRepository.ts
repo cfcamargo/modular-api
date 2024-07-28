@@ -39,8 +39,7 @@ export default class clientRepository {
         Promise.all(client.contacts.map(async (contact) => {
             await contact.delete()
         }))
-        // await client.delete()
-
+        await client.delete()
         return true
     }
 }
