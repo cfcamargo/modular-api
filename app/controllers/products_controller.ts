@@ -1,7 +1,9 @@
 import ProductService from '#services/product/product_service';
 import { createProductValidator, updateProductValidator } from '#validators/product';
+import { inject } from '@adonisjs/core';
 import type { HttpContext } from '@adonisjs/core/http'
 
+@inject()
 export default class ProductsController {
   constructor(protected productService: ProductService){
     // metodo magico
