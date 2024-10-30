@@ -6,10 +6,10 @@ import { HttpContext } from "@adonisjs/core/http";
 
 export default class UsersController {
     async index({ request }: HttpContext){
-        const page = 1
-        const limit = 20
+        const page = request.input('page', 1)
+        const perPage = request.input('perPage', 20)
 
-        const users = await User.query().paginate(page, limit)
+        const users = await User.query().paginate(page, perPage)
         return{
             users
         }
