@@ -23,6 +23,6 @@ export const storeValidator = vine.compile(
                 type: vine.string(),
                 contact: vine.string()
             })
-        )
+        ).nullable()
     })
 )

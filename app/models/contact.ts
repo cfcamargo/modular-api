@@ -13,6 +13,9 @@ export default class Contact extends BaseModel {
   @column()
   declare contact: string
 
+  @column()
+  declare clientId: number
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 

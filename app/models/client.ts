@@ -15,7 +15,7 @@ export default class Client extends BaseModel {
   declare type: string
 
   @column()
-  declare fantasyName: string
+  declare fantasyName: string | null
 
   @column()
   declare ie: number
@@ -36,5 +36,5 @@ export default class Client extends BaseModel {
   declare address: HasOne<typeof Address>
 
   @hasMany(() => Contact)
-  declare contatos: HasMany<typeof Contact>
+  declare contacts: HasMany<typeof Contact>
 }

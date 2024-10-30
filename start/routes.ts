@@ -1,6 +1,7 @@
 const AuthController = () => import('#controllers/auth/auth_controller')
 const UsersController = () => import('#controllers/users/users_controller')
 const ProductsController = () => import('#controllers/products/products_controller')
+const ClientsController = () => import('#controllers/clients/clients_controller')
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
 
@@ -29,3 +30,8 @@ router.get('/products/:id', [ProductsController, 'show']).as('product.info').use
 router.patch('/products/:id', [ProductsController, 'update']).as('product.update').use(middleware.auth())
 router.delete('/products/:id', [ProductsController, 'destroy']).as('product.destroy').use(middleware.auth())
 router.put('/products/:id', [ProductsController, 'updateQuantity']).as('product.quantity').use(middleware.auth())
+
+
+router.get('/clients', [ClientsController, 'index']).as('clients.index').use(middleware.auth())
+router.post('/clients', [ClientsController, 'store']).as('clients.store').use(middleware.auth())
+router.get('/clients/:id', [ClientsController, 'show']).as('clients.show').use(middleware.auth())

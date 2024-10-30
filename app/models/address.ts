@@ -25,6 +25,9 @@ export default class Address extends BaseModel {
   @column()
   declare country: string
 
+  @column()
+  declare clientId: number
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 
@@ -33,4 +36,5 @@ export default class Address extends BaseModel {
 
   @belongsTo(() => Client)
   declare client: BelongsTo<typeof Client>
+
 }

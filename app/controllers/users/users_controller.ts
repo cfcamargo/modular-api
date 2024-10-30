@@ -18,7 +18,7 @@ export default class UsersController {
     async store({ request, response }: HttpContext){
         try {
             const data = await request.validateUsing(registerValidator);
-            
+
             const user = await User.create(data);
 
             return response.status(201).json({
@@ -75,7 +75,7 @@ export default class UsersController {
             })
         }
 
-        user.delete()
+        await user.delete()
         return response.status(200).send('Usuário deletado com sucesso')
     }
 }
