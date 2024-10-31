@@ -10,7 +10,7 @@ export default class extends BaseSchema {
       table.enum('type', ['PJ', 'PF']).notNullable()
       table.string('fantasy_name').nullable()
       table.string('document').notNullable()
-      table.string('ie').nullable()
+      table.string('rg_ie').nullable()
       table.string('im').nullable()
       table.timestamp('created_at')
       table.timestamp('updated_at')

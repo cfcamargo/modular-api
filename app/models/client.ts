@@ -18,7 +18,7 @@ export default class Client extends BaseModel {
   declare fantasyName: string | null
 
   @column()
-  declare ie: number
+  declare rgIe: number
 
   @column()
   declare document: number

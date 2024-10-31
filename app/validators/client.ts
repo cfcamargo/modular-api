@@ -6,7 +6,7 @@ export const storeValidator = vine.compile(
             fullName: vine.string().minLength(3),
             type: vine.string(),
             document:vine.number(),
-            ie: vine.number(),
+            rgIe: vine.number(),
             im: vine.string().nullable(),
             fantasyName: vine.string().nullable(),
         }),
@@ -32,10 +32,11 @@ export const updateClientData = vine.compile(
         fullName: vine.string().minLength(3),
         type: vine.string(),
         document:vine.number(),
-        ie: vine.number(),
+        rgIe: vine.number(),
         im: vine.string().nullable(),
         fantasyName: vine.string().nullable(),
     })
+
 )
 
 export const updateClientAddress = vine.compile(
