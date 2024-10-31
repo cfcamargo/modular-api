@@ -35,3 +35,10 @@ router.put('/products/:id', [ProductsController, 'updateQuantity']).as('product.
 router.get('/clients', [ClientsController, 'index']).as('clients.index').use(middleware.auth())
 router.post('/clients', [ClientsController, 'store']).as('clients.store').use(middleware.auth())
 router.get('/clients/:id', [ClientsController, 'show']).as('clients.show').use(middleware.auth())
+router.delete('/clients/:id', [ClientsController, 'destroy']).as('clients.destroy').use(middleware.auth())
+router.patch('/clients/:id', [ClientsController, 'updateBasicData']).as('clients.updateBasicData').use(middleware.auth())
+
+// rotas para manipular as entidades relacionadas ao cliente
+router.patch('/client-adress/:id', [ClientsController, 'updateAddressData']).as('clients.updateAddressData').use(middleware.auth())
+router.patch('/clients/client-contact', [ClientsController, 'updateContactById']).as('clients.updateContact').use(middleware.auth())
+router.delete('/clients/clients-contact/:id', [ClientsController, 'destroyContactById']).as('clients.destroyContact').use(middleware.auth())

@@ -76,6 +76,6 @@ export default class UsersController {
         }
 
         await user.delete()
-        return response.status(200).send('Usuário deletado com sucesso')
+        return response.status(200).send('User Successfully Deleted')
     }
 }
