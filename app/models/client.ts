@@ -24,6 +24,9 @@ export default class Client extends BaseModel {
   declare document: number
 
   @column()
+  declare birthdate: string | null
+
+  @column()
   declare im: string | null
 
   @column.dateTime({ autoCreate: true })

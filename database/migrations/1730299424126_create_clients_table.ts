@@ -7,11 +7,12 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.string('full_name').notNullable()
-      table.enum('type', ['PJ', 'PF']).notNullable()
+      table.enum('type', ['pj', 'pf']).notNullable()
       table.string('fantasy_name').nullable()
       table.string('document').notNullable()
       table.string('rg_ie').nullable()
       table.string('im').nullable()
+      table.string('birthdate').nullable()
       table.timestamp('created_at')
       table.timestamp('updated_at')
     })
