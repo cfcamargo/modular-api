@@ -4,6 +4,7 @@ const ProductsController = () => import('#controllers/products/products_controll
 const ClientsController = () => import('#controllers/clients/clients_controller')
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
+const PasswordResetsController = () => import('#controllers/users/password_resets_controller')
 
 router.get('/', async () => {
   return {
@@ -48,3 +49,6 @@ router
   .patch('/clients/:id', [ClientsController, 'update'])
   .as('clients.update')
   .use(middleware.auth())
+
+router.get('/reset-password/:code', [PasswordResetsController, 'show'])
+router.post('/reset-password/:code', [PasswordResetsController, 'updateUserByResetCode'])
